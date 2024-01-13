@@ -3,6 +3,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/ioctl.h>
 #include <termios.h>
 #include <unistd.h>
 
@@ -14,6 +15,8 @@
 
 struct editorConfig {
   struct termios orig_termios;
+  int screenrows;
+  int screencols;
 };
 
 struct editorConfig E;
@@ -67,6 +70,19 @@ char editorReadKey() {
   return c;
 }
 
+int getWindowSize(int *rows, int *cols) {
+  struct winsize ws;
+
+  if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == -1 || ws.ws_col == 0) {
+    return -1;
+  } else {
+    *rows = ws.ws_row;
+    *cols = ws.ws_col;
+
+    return 0;
+  }
+}
+
 /*** input ***/
 
 void editorProcessKeypress() {
@@ -85,7 +101,7 @@ void editorProcessKeypress() {
 /*** output ***/
 
 void editorDrawRows() {
-  for (int y = 0; y < 24; y++) {
+  for (int y = 0; y < E.screenrows; y++) {
     write(STDOUT_FILENO, "~\r\n", 3);
   }
 }
@@ -101,8 +117,15 @@ void editorRefreshScreen() {
 
 /*** init ***/
 
+void initEditor() {
+  if (getWindowSize(&E.screenrows, &E.screencols) == -1) {
+    die("getWindowSize");
+  }
+}
+
 int main() {
   enableRawMode();
+  initEditor();
 
   while (1) {
     editorRefreshScreen();
@@ -111,6 +134,3 @@ int main() {
 
   return 0;
 }
-
-// TODO Part 3
-// https://viewsourcecode.org/snaptoken/kilo/03.rawInputAndOutput.html
