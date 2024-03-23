@@ -397,7 +397,7 @@ void editorProcessKeypress() {
     E.cx = 0;
     break;
   case END_KEY:
-    E.cx = E.screencols - 1;
+    E.cx = E.row[E.cy].size;
     break;
 
   case ARROW_UP:
