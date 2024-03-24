@@ -2,6 +2,10 @@ hello world lorem ipsum what is love how are you i am testing this program ha ha
 ###
 helloworllorem
 ipsum
+
+
+newline
+
 whatislove
 how
 are
