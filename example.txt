@@ -1,12 +1,8 @@
 hello world lorem ipsum what is love how are you i am testing this program ha ha
 ###
-hello
-world
-lorem
+helloworllorem
 ipsum
-what
-is
-love
+whatislove
 how
 are
 you
