@@ -905,4 +905,4 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-// TODO https://viewsourcecode.org/snaptoken/kilo/06.search.html
+// TODO https://viewsourcecode.org/snaptoken/kilo/06.search.html : Restore cursor position when cancelling search
