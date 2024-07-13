@@ -506,7 +506,7 @@ void editorSave() {
 void editorFindCallback(char *query, int key) {
   static int last_match = -1;
   static int direction = 1;
-  
+
   if (key == '\r' || key == '\x1b') { // enter or escape
     last_match = -1;
     direction = 1;
@@ -532,7 +532,7 @@ void editorFindCallback(char *query, int key) {
     } else if (current == E.numrows) {
       current = 0;
     }
-    
+
     erow *row = &E.row[current];
     char *match = strstr(row->render, query);
 
@@ -552,7 +552,8 @@ void editorFind() {
   int saved_coloff = E.coloff;
   int saved_rowoff = E.rowoff;
 
-  char *query = editorPrompt("Search: %s (Use ESC/Arrows/Enter)", editorFindCallback);
+  char *query =
+      editorPrompt("Search: %s (Use ESC/Arrows/Enter)", editorFindCallback);
 
   if (query) {
     free(query);
@@ -940,5 +941,4 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-// TODO https://viewsourcecode.org/snaptoken/kilo/06.search.html : Restore
-// cursor position when cancelling search
+// TODO https://viewsourcecode.org/snaptoken/kilo/07.syntaxHighlighting.html
