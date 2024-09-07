@@ -1,5 +1,5 @@
 test c file "hello"
-// this is a comment
+hey there! // this is a comment
 int hmm long hmm for while
 wow
 wow

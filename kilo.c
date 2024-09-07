@@ -307,7 +307,7 @@ void editorUpdateSyntax(erow *row) {
 
     if (scs_len && !in_string) {
       if (!strncmp(&row->render[i], scs, scs_len)) {
-        memset(&row->hl[i], HL_COMMENT, row->rsize - 1);
+        memset(&row->hl[i], HL_COMMENT, row->rsize - i);
         break;
       }
     }
